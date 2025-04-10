@@ -11,6 +11,7 @@ const PORT = Number(getEnvVar("PORT", "3000"));
 
 export const setupServer = async () => {
     const app = express();
+
     app.use(cors());
 
     app.use(
