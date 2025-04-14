@@ -57,7 +57,7 @@ export async function refreshSession(sessionId, refreshToken) {
         refreshToken: currentSession.refreshToken,
     });
     return sessionCollection.create({
-        userId: currentSession._id,
+        userId: currentSession.userId,
         accessToken: crypto.randomBytes(32).toString('base64'),
         refreshToken: crypto.randomBytes(32).toString('base64'),
         accessTokenValidUntil: new Date(Date.now() + 15 * 60 * 1000),
