@@ -22,7 +22,8 @@ const sessionSchema = new mongoose.Schema(
         refreshTokenValidUntil: {
             type: Date,
             required: true,
-        }
+        },
+
     },
     {
         versionKey: false,
