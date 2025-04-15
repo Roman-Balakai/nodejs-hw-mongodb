@@ -1,0 +1,24 @@
+type: object
+required:
+  - _id
+  - name
+  - phoneNumber
+  - contactType
+  - userId
+properties:
+  _id:
+    type: string
+    example: 67fe02c6366cc98c0422ad06
+  name:
+    type: string
+    example: John Doe
+  phoneNumber:
+    type: string
+    example: +3801234567890
+  contactType:
+    type: string
+    enum: ['personal', 'business', 'other']
+    example: personal
+  userId:
+    type: string
+    example: 67fe02c6366cc98c0422ad06
