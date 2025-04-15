@@ -17,8 +17,16 @@ properties:
     example: +3801234567890
   contactType:
     type: string
-    enum: ['personal', 'business', 'other']
+    enum: [personal, business, other]
     example: personal
   userId:
     type: string
     example: 67fe02c6366cc98c0422ad06
+  createdAt:
+    type: string
+    format: date-time
+    example: 2025-04-15T12:34:56.789Z
+  updatedAt:
+    type: string
+    format: date-time
+    example: 2025-04-16T08:12:00.123Z

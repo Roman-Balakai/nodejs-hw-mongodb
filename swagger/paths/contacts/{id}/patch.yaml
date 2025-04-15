@@ -21,11 +21,18 @@ requestBody:
         properties:
           name:
             type: string
+            example: John Smith
           email:
             type: string
             format: email
-          phone:
+            example: john.smith@example.com
+          phoneNumber:
             type: string
+            example: +380501112233
+          contactType:
+            type: string
+            enum: [personal, business, other]
+            example: business
           photo:
             type: string
             format: binary

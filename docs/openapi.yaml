@@ -2,14 +2,14 @@ openapi: 3.1.0
 info:
   title: Contact API
   version: 1.0.0
-license:
-  name: Apache 2.0
-  url: http://www.apache.org/licenses/LICENSE-2.0.html
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
 
   description: This is documentation for the Contact API.
-  servers:
-    - url: http://127.0.0.1:3000
-    - url: #посилання на задеплоєний сайт
+servers:
+  - url: http://127.0.0.1:3000
+  - url: https://contacts-app-hxqm.onrender.com
 tags:
   - name: contacts
     description: Contacts API
