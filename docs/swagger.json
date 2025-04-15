@@ -2,8 +2,21 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Contact API",
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "description": "This is documentation for the Contact API."
   },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:3000"
+    },
+    {
+      "url": "https://contacts-app-hxqm.onrender.com"
+    }
+  ],
   "tags": [
     {
       "name": "contacts",
@@ -371,14 +384,26 @@
                 "type": "object",
                 "properties": {
                   "name": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "John Smith"
                   },
                   "email": {
                     "type": "string",
-                    "format": "email"
+                    "format": "email",
+                    "example": "john.smith@example.com"
                   },
-                  "phone": {
-                    "type": "string"
+                  "phoneNumber": {
+                    "type": "string",
+                    "example": 380501112233
+                  },
+                  "contactType": {
+                    "type": "string",
+                    "enum": [
+                      "personal",
+                      "business",
+                      "other"
+                    ],
+                    "example": "business"
                   },
                   "photo": {
                     "type": "string",
@@ -498,6 +523,16 @@
           "userId": {
             "type": "string",
             "example": "67fe02c6366cc98c0422ad06"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-04-15T12:34:56.789Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-04-16T08:12:00.123Z"
           }
         }
       }
@@ -602,18 +637,5 @@
         }
       }
     }
-  },
-  "license": {
-    "name": "Apache 2.0",
-    "url": "http://www.apache.org/licenses/LICENSE-2.0.html",
-    "description": "This is documentation for the Contact API.",
-    "servers": [
-      {
-        "url": "http://127.0.0.1:3000"
-      },
-      {
-        "url": null
-      }
-    ]
   }
 }
