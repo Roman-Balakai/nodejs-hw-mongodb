@@ -1,5 +1,5 @@
 tags:
-  - сontacts
+  - contacts
 summary: Create a new contact
 operationId: createContact
 description: This endpoint allows you to create a new contact for the authenticated user. Supports file upload for contact photo.

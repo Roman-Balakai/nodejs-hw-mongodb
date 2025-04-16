@@ -166,7 +166,7 @@
       },
       "post": {
         "tags": [
-          "Contacts"
+          "contacts"
         ],
         "summary": "Create a new contact",
         "operationId": "createContact",
