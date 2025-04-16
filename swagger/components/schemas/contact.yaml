@@ -22,6 +22,17 @@ properties:
   userId:
     type: string
     example: 67fe02c6366cc98c0422ad06
+  email:
+    type: string
+    format: email
+    example: john.doe@example.com
+  isFavourite:
+    type: boolean
+    example: false
+  photoUrl:
+    type: string
+    format: uri
+    example: https://example.com/uploads/photo.jpg
   createdAt:
     type: string
     format: date-time

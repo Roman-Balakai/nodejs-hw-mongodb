@@ -108,9 +108,47 @@
                       "example": "Successfully found contacts!"
                     },
                     "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/contact"
+                      "type": "object",
+                      "required": [
+                        "data",
+                        "page",
+                        "perPage",
+                        "totalItems",
+                        "totalPages",
+                        "hasPreviousPage",
+                        "hasNextPage"
+                      ],
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/contact"
+                          }
+                        },
+                        "page": {
+                          "type": "integer",
+                          "example": 1
+                        },
+                        "perPage": {
+                          "type": "integer",
+                          "example": 10
+                        },
+                        "totalItems": {
+                          "type": "integer",
+                          "example": 35
+                        },
+                        "totalPages": {
+                          "type": "integer",
+                          "example": 4
+                        },
+                        "hasPreviousPage": {
+                          "type": "boolean",
+                          "example": false
+                        },
+                        "hasNextPage": {
+                          "type": "boolean",
+                          "example": true
+                        }
                       }
                     }
                   }
@@ -357,9 +395,9 @@
         "tags": [
           "contacts"
         ],
-        "summary": "Update contact by id",
-        "operationId": "updateContactById",
-        "description": "Update contact by id. Updates any fields passed in the body, including optional photo upload.",
+        "summary": "Update an existing contact",
+        "operationId": "updateContact",
+        "description": "Update contact data by ID with optional photo upload",
         "security": [
           {
             "bearerAuth": []
@@ -367,13 +405,14 @@
         ],
         "parameters": [
           {
-            "in": "path",
             "name": "id",
+            "in": "path",
             "required": true,
+            "description": "Contact ID",
             "schema": {
-              "type": "string"
-            },
-            "example": "67fe02c6366cc98c0422ad06"
+              "type": "string",
+              "example": "65fe02c6366cc98c0422ad06"
+            }
           }
         ],
         "requestBody": {
@@ -385,16 +424,11 @@
                 "properties": {
                   "name": {
                     "type": "string",
-                    "example": "John Smith"
-                  },
-                  "email": {
-                    "type": "string",
-                    "format": "email",
-                    "example": "john.smith@example.com"
+                    "example": "John Updated"
                   },
                   "phoneNumber": {
                     "type": "string",
-                    "example": 380501112233
+                    "example": 380987654321
                   },
                   "contactType": {
                     "type": "string",
@@ -405,9 +439,19 @@
                     ],
                     "example": "business"
                   },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "example": "updated.email@example.com"
+                  },
+                  "isFavourite": {
+                    "type": "boolean",
+                    "example": true
+                  },
                   "photo": {
                     "type": "string",
-                    "format": "binary"
+                    "format": "binary",
+                    "description": "New contact photo"
                   }
                 }
               }
@@ -450,28 +494,7 @@
             "$ref": "#/components/responses/401"
           },
           "404": {
-            "description": "Contact not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "status",
-                    "message"
-                  ],
-                  "properties": {
-                    "status": {
-                      "type": "integer",
-                      "example": 404
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "Contact not found"
-                    }
-                  }
-                }
-              }
-            }
+            "$ref": "#/components/responses/404"
           },
           "500": {
             "$ref": "#/components/responses/500"
@@ -523,6 +546,20 @@
           "userId": {
             "type": "string",
             "example": "67fe02c6366cc98c0422ad06"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "john.doe@example.com"
+          },
+          "isFavourite": {
+            "type": "boolean",
+            "example": false
+          },
+          "photoUrl": {
+            "type": "string",
+            "format": "uri",
+            "example": "https://example.com/uploads/photo.jpg"
           },
           "createdAt": {
             "type": "string",
@@ -604,6 +641,43 @@
                     "message": {
                       "type": "string",
                       "example": "Access token not provided"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "404": {
+        "description": "Not Found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "status",
+                "message",
+                "data"
+              ],
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 404
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Not Found"
+                },
+                "data": {
+                  "type": "object",
+                  "required": [
+                    "message"
+                  ],
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Contact not found"
                     }
                   }
                 }
