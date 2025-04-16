@@ -1,10 +1,11 @@
 tags:
-  - contacts
-summary: Create a contact
+  - сontacts
+summary: Create a new contact
 operationId: createContact
-description: Create a new contact for authenticated user
+description: This endpoint allows you to create a new contact for the authenticated user. Supports file upload for contact photo.
 security:
   - bearerAuth: []
+
 requestBody:
   required: true
   content:
@@ -13,18 +14,36 @@ requestBody:
         type: object
         required:
           - name
-          - email
+          - phoneNumber
+          - contactType
         properties:
           name:
             type: string
+            description: Name of the contact
+            example: John Doe
+          phoneNumber:
+            type: string
+            description: Phone number of the contact
+            example: +380501234567
           email:
             type: string
             format: email
-          phone:
+            description: Email address of the contact
+            example: john.doe@example.com
+          contactType:
             type: string
+            enum: [work, home, personal]
+            description: Type of contact
+            example: personal
+          isFavourite:
+            type: boolean
+            description: Mark as favourite
+            example: false
           photo:
             type: string
             format: binary
+            description: Upload contact photo
+
 responses:
   '201':
     description: Successfully created a contact
@@ -42,6 +61,7 @@ responses:
               example: Successfully created a contact!
             data:
               $ref: ../../components/schemas/contact.yaml
+
   '400':
     $ref: ../../components/responses/400.yaml
   '401':
